@@ -1,0 +1,23 @@
+[[package]]
+name = "RealisticCircles"
+version = "0.1.0"
+dependencies = [
+ "bmp 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "bmp"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+dependencies = [
+ "byteorder 1.2.6 (registry+https://github.com/rust-lang/crates.io-index)",
+]
+
+[[package]]
+name = "byteorder"
+version = "1.2.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[metadata]
+"checksum bmp 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)" = "ef8ceb6f83a7c5dde38e524a66b76a92cc02abb63880a2d9d067cdf8b50a76da"
+"checksum byteorder 1.2.6 (registry+https://github.com/rust-lang/crates.io-index)" = "90492c5858dd7d2e78691cfb89f90d273a2800fc11d98f60786e5d87e2f83781"

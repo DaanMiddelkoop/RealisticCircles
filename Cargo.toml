@@ -1,0 +1,7 @@
+[package]
+name = "RealisticCircles"
+version = "0.1.0"
+authors = ["Daan <daantje676@gmail.com>"]
+
+[dependencies]
+bmp = "0.4.0"
