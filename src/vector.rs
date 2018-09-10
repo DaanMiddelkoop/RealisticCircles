@@ -1,7 +1,7 @@
 use std::f32;
 
 
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct Vector {
     pub x: f32,
     pub y: f32,
@@ -25,8 +25,12 @@ impl Vector {
         }
     }
 
+    pub fn length(&self) -> f32 {
+        ((self.x * self.x) + (self.y * self.y) + (self.z * self.z)).sqrt()
+    }
+
     pub fn normalize(&mut self) {
-        let length = ((self.x * self.x) + (self.y * self.y) + (self.z * self.z)).sqrt();
+        let length = self.length();
 
         self.x /= length;
         self.y /= length;
@@ -34,11 +38,13 @@ impl Vector {
     }
 
     pub fn dot(&self, other: &Vector) -> f32 {
-        (self.x * other.x) + (self.y * other.y) + (self.z * other.z) 
+        let x = (self.x * other.x) + (self.y * other.y) + (self.z * other.z);
+
+        x
     }
 
     pub fn angle(&self, other: &Vector) -> f32 {
-        self.dot(other).acos()
+        (self.dot(other) / (self.length() * other.length())).acos()
     }
 
     pub fn sub(&self, other: &Vector) -> Vector {
@@ -46,6 +52,22 @@ impl Vector {
             x: self.x - other.x,
             y: self.y - other.y,
             z: self.z - other.z,
+        }
+    }
+
+    pub fn add(&self, other: &Vector) -> Vector {
+        Vector {
+            x: self.x + other.x,
+            y: self.y + other.y,
+            z: self.z + other.z,
+        }
+    }
+
+    pub fn mult(&self, other: f32) -> Vector {
+        Vector {
+            x: self.x * other,
+            y: self.y * other,
+            z: self.z * other,
         }
     }
 }
