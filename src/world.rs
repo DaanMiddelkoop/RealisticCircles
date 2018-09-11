@@ -16,31 +16,49 @@ pub struct Light {
 impl World {
     pub fn new() -> Self {
         let mut globes = Vec::new();
+        // globes.push(Globe {
+        //     position: Vector::new(5.0, 0.0, -2.0),
+        //     radius: 1.0,
+        //     color: Pixel::new(0, 255, 0),
+        //     light_defraction: 0.0,
+        //     light_intensity: 0.05,
+        // });
+
+        // globes.push(Globe {
+        //     position: Vector::new(5.0, 0.0, 2.0),
+        //     radius: 1.0,
+        //     color: Pixel::new(0, 255, 0),
+        //     light_defraction: 0.1,
+        //     light_intensity: 0.05,
+        // });
+
         globes.push(Globe {
-            position: Vector::new(10.0, 0.0, 0.0),
-            radius: 2.0,
+            position: Vector::new(7.0, 0.0, 0.0),
+            radius: 1.0,
             color: Pixel::new(0, 255, 0),
+            light_defraction: 1.0,
+            light_intensity: 0.0,
         });
         globes.push(Globe {
-            position: Vector::new(7.0, 2.0, 2.0),
-            radius: 0.5,
+            position: Vector::new(-7.0, 0.0, 0.0),
+            radius: 1.0,
             color: Pixel::new(0, 255, 0),
+            light_defraction: 0.0,
+            light_intensity: 30.5,
         });
 
-        let mut lights = Vec::new();
-        lights.push(Light {
-            position: Vector::new(0.0, 10.0, 10.0),
-            intensity: 5.0,
-        });
-        lights.push(Light {
-            position: Vector::new(0.0, 10.0, 10.0),
-            intensity: 5.0,
-        });
+        // globes.push(Globe {
+        //     position: Vector::new(-3.1, 0.0, 0.0),
+        //     radius: 0.0,
+        //     color: Pixel::new(0, 255, 0),
+        //     light_defraction: 0.0,
+        //     light_intensity: 0.0,
+        // });
 
 
         World {
             spheres: globes,
-            lights: lights,
+            lights: Vec::new(),
         }
     }
 }
