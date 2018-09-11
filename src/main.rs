@@ -179,10 +179,32 @@ pub fn trace_lights(mut result: TraceResult, direction: Vector, position: Vector
 
     let mut hit_something = false;
     
+    // Hard shadows
+    for sphere in &world.spheres {
+        let mut new_direction = sphere.position.sub(&result.hitpoint);
 
+        let new_result = trace_ray(result.hitpoint, new_direction, world, bounces);
+
+        if (new_result.hit && new_result.distance < new_direction.length()&& new_result.distance > 0.01) {
+            // Hit some object meaning shadow casting :O
+            
+            let mut intensity = new_result.light_intensity / new_result.distance;
+            
+            //println!("light distance: {:?}", new_result.distance);
+            //println!("light intensity: {:?}", intensity);
+            let light_angle = result.normal.angle(&mut new_direction);
+
+            
+            //println!("angle: {:?}", light_angle);
+            intensity *= light_angle.cos().abs();
+            
+            //println!("light intensity: {:?}", intensity);
+            result.light_intensity += intensity;
+        }
+    }
     
-    //println!("start");
-    let n = (40.0 * result.light_defraction) as usize + 1;
+    //Soft shadows
+    let n = (50.0 * result.light_defraction) as usize + 1;
     for _ in 0..n {
         let new_direction = randomize_light_defraction_direction(result.normal, direction, result.light_defraction);
         
